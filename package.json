@@ -1,9 +1,9 @@
 {
   "name": "generator-webapp-uncss",
-  "version": "0.5.0",
+  "version": "0.1.0",
   "description": "Scaffold out a front-end web app",
   "license": "BSD",
-  "repository": "yeoman/generator-webapp",
+  "repository": "addyosmani/generator-webapp-uncss",
   "author": "The Yeoman Team",
   "main": "app/index.js",
   "engines": {

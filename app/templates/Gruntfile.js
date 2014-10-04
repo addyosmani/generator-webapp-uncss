@@ -265,12 +265,22 @@ module.exports = function (grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
+      html: '<%= config.dist %>/index.html',
       options: {
-        dest: '<%%= config.dist %>'
-      },
-      html: '<%%= config.app %>/index.html'
+        dest: '<%= config.dist %>',
+        flow: {
+          html: {
+            steps: {
+              // Disabled as we'll be using a manual
+              // cssmin configuration later. This is
+              // to ensure we work well with grunt-uncss
+              // css: ['cssmin']
+            },
+            post: {}
+          }
+        }
+      }
     },
-
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
       options: {
@@ -282,6 +292,25 @@ module.exports = function (grunt) {
       },
       html: ['<%%= config.dist %>/{,*/}*.html'],
       css: ['<%%= config.dist %>/styles/{,*/}*.css']
+    },
+
+     uncss: {
+      dist: {
+        options: {
+          // Take our Autoprefixed stylesheet main.css &
+          // any other stylesheet dependencies we have..
+          stylesheets: [
+            '../.tmp/styles/main.css',
+            <% if (includeBootstrap && !includeSass) { %>'../bower_components/bootstrap/dist/css/bootstrap.css'<% } %>
+          ],
+          // Ignore css selectors for async content with complete selector or regexp
+          // Only needed if using Bootstrap
+          ignore: [/dropdown-menu/,/\.collapsing/,/\.collapse/] 
+        },
+        files: {
+          '.tmp/styles/main.css': ['<%%= config.app %>/index.html']
+        }
+      }
     },
 
     // The following *-min tasks produce minified files in the dist folder
@@ -332,16 +361,15 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care
     // of minification. These next options are pre-configured if you do not
     // wish to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%%= config.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css',
-    //         '<%%= config.app %>/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
+     cssmin: {
+       dist: {
+         files: {
+           '<%%= config.dist %>/styles/main.css': [
+             '.tmp/styles/{,*/}*.css'
+           ]
+         }
+       }
+     },
     // uglify: {
     //   dist: {
     //     files: {
@@ -481,9 +509,10 @@ module.exports = function (grunt) {
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
-    'concat',
+    'uncss',
     'cssmin',
-    'uglify',
+    //'concat',
+    //'uglify',
     'copy:dist',<% if (includeModernizr) { %>
     'modernizr',<% } %>
     'rev',

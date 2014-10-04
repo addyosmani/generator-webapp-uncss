@@ -33,8 +33,8 @@ module.exports = yeoman.generators.Base.extend({
     if (!this.options['skip-welcome-message']) {
       this.log(require('yosay')());
       this.log(chalk.magenta(
-        'Out of the box I include HTML5 Boilerplate, jQuery, and a ' +
-        'Gruntfile.js to build your app.'
+        'Out of the box I include HTML5 Boilerplate, jQuery, a ' +
+        'Gruntfile.js and UnCSS setup for you.'
       ));
     }
 
