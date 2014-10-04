@@ -2,9 +2,9 @@
 
 [Yeoman](http://yeoman.io) generator that scaffolds out a front-end web app. 
 
-*Includes support for grunt-uncss*.
+*Includes support for [grunt-uncss](https://github.com/addyosmani/grunt-uncss)*.
 
-![](http://i.imgur.com/uKTT2Hj.png)
+![](https://cloud.githubusercontent.com/assets/110953/4516845/6168ffce-4c0d-11e4-812e-4292ad68d166.png)
 
 ## Features
 
@@ -23,8 +23,8 @@ For more information on what `generator-webapp` can do for you, take a look at t
 
 ## Getting Started
 
-- Install: `npm install -g generator-webapp`
-- Run: `yo webapp`
+- Install: `npm install -g generator-webapp-uncss`
+- Run: `yo webapp-uncss`
 - Run `grunt` for building and `grunt serve` for preview[\*](#grunt-serve-note). `--allow-remote` option for remote access.
 
 
