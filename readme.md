@@ -2,7 +2,7 @@
 
 [Yeoman](http://yeoman.io) generator that scaffolds out a front-end web app. 
 
-*Includes support for [grunt-uncss](https://github.com/addyosmani/grunt-uncss)*.
+*Includes support for [grunt-uncss](https://github.com/addyosmani/grunt-uncss). Relevant changes are [here](https://github.com/addyosmani/generator-webapp-uncss/commit/a14e0b7ad799da30855f84d10760dcff2e0bcbe2)*.
 
 ![](https://cloud.githubusercontent.com/assets/110953/4516845/6168ffce-4c0d-11e4-812e-4292ad68d166.png)
 
